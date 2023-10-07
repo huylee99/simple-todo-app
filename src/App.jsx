@@ -1,9 +1,10 @@
 import { useReducer } from "react";
 import "./App.css";
 import { Typography, Row, Col } from "antd";
-import RemainingTasks from "./components/RemainingTaskList";
-import CompletedTasks from "./components/CompletedTasks";
 import Form from "./components/TodoForm";
+import BoxTask from "./components/BoxTask";
+import RemainingTaskItem from './components/RemainingTaskItem';
+import CompletedTaskItem from './components/CompletedTaskItem';
 
 const { Title } = Typography;
 
@@ -81,11 +82,25 @@ function App() {
       <Form handleAddTodo={handleAddTodo} />
       <Row justify={"space-between"}>
         <Col span={11}>
-          <RemainingTasks remainingTasks={remainingTasks} handleCompleteTodo={handleCompleteTodo} handleRemoveTodo={handleRemoveTodo} />
+         
+          <BoxTask>
+            {remainingTasks.length > 0 && remainingTasks.map(task => (
+              <RemainingTaskItem 
+                key={task.id} 
+                handleCompleteTodo={handleCompleteTodo} 
+                handleRemoveTodo={handleRemoveTodo} 
+                task={task} 
+              />
+            ))}
+          </BoxTask>
         </Col>
 
         <Col span={11}>
-          <CompletedTasks completedTasks={completedTasks} />
+          <BoxTask>
+            {completedTasks.length > 0 && completedTasks.map(task => 
+              <CompletedTaskItem key={task.id} task={task} />
+            )}
+          </BoxTask>
         </Col>
       </Row>
     </>

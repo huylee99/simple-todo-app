@@ -1,9 +1,7 @@
-import CompletedTaskItem from "./CompletedTaskItem";
+import React from 'react'
 import { Typography } from "antd";
-
 const { Title } = Typography;
-
-const CompletedTasks = ({ completedTasks }) => {
+function BoxTask({ children }) {
   return (
     <div
       style={{
@@ -32,10 +30,10 @@ const CompletedTasks = ({ completedTasks }) => {
           gap: 16,
         }}
       >
-        {completedTasks.length > 0 && completedTasks.map(task => <CompletedTaskItem key={task.id} task={task} />)}
+        {children}
       </div>
     </div>
   );
-};
+}
 
-export default CompletedTasks;
+export default BoxTask
